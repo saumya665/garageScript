@@ -4,3 +4,4 @@ const myfunc=(a,b)=>{
   return c;
 };
 console.log(myfunc(2,3));
+module.exports(myfunc);
