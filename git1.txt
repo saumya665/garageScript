@@ -1,0 +1,9 @@
+
+Git1: There was a time when apps were extremely buggy. People decided they needed backups! Version control, gives ability to revert to any state you want (before the adding login feature, previous version, etc)
+Commands:
+init, status, add, commit, checkout, log
+
+
+Concepts:
+staged change, commitIds
+

@@ -1,0 +1,9 @@
+Commands:
+branch, log,
+Concepts:
+branch
+Rebase master: Find common common commit Id between  master and current branch. Apply all of the new commits in master branch. Apply current branch’s commits.
+Replace master with any branch.
+Questions:
+what would it mean... to git checkout branchName?
+
