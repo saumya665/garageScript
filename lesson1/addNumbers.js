@@ -1,6 +1,6 @@
 const addNumbers=(a,b)=>{
-  const c = a+b;
-  return c;
+  const total = a+b;
+  return total;
 }
-module.exports = myfunc;
+module.exports = addNumbers;
 //newest update
