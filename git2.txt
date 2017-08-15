@@ -7,7 +7,4 @@ Replace master with any branch.
 Questions:
 what would it mean... to git checkout branchName?
 
-use git stash apply to put away changes which are not staged for commit
 
-do git checkout to the addNumbers(local branch)
-then rebase with the origin/addNumbers(remote repo)
