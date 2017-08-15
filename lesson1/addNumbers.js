@@ -1,4 +1,4 @@
-const myfunc=(a,b)=>{
+const addNumbers=(a,b)=>{
   const c = a+b;
   return c;
 }
