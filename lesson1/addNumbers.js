@@ -1,5 +1,4 @@
 const addNumbers=(a,b)=>{
-  const total = a+b;
-  return total;
+  return = a+b;
 }
 module.exports = addNumbers;
