@@ -4,7 +4,6 @@ const test=(a,b,c)=>{
   if(addNumbers(a,b)==c)
   {
     console.log("Your program is working propery");
-    return true;
   } else {
     console.log("Your program is not adding numbers properly");
   }
