@@ -7,4 +7,4 @@ Replace master with any branch.
 Questions:
 what would it mean... to git checkout branchName?
 
-git push  toRemoteRepo  fromLocalRepo
+
