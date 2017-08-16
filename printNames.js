@@ -3,11 +3,11 @@ const emptyfunc =()=>{
 };
 
 const printFunc=(err,files)=>{
-  let myStr = " ";
-  files.forEach((e)=> {
-    if(e!="saumya")
-      myStr = myStr + " " +e;
+  let allNames = " ";
+  files.forEach((oneName)=> {
+    if(oneName!="saumya")
+      allNames = allNames + " " +oneName;
   });
-  f.writeFile("/home/sya/garageScript/writeFile.txt",myStr, emptyfunc);
+  f.writeFile("/home/sya/garageScript/writeFile.txt",allNames, emptyfunc);
 };
 f.readdir("/home",printFunc);
