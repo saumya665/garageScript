@@ -1,6 +1,13 @@
 const f = require("fs");
-const printName = (err,files)=>{
-  console.log(files);
+const emptyfunc =()=>{
 };
-f.readdir("/home", printName);
 
+const printFunc=(err,files)=>{
+  let myStr = " ";
+  files.forEach((e)=> {
+    if(e!="saumya")
+      myStr = myStr + " " +e;
+  });
+  f.writeFile("/home/sya/garageScript/writeFile.txt",myStr, emptyfunc);
+};
+f.readdir("/home",printFunc);
