@@ -9,7 +9,7 @@ const executeApp = (req,res)=>{
     files.forEach((name)=>{
       if(name!="saumya")
         allNames = allNames + " " +name;
-   });
+    });
     res.send(allNames);
   };
   fs.readdir("/home", printFunc);
