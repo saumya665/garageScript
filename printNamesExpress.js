@@ -1,4 +1,3 @@
-//program to print all names besides your own in the browser using express
 const fs = require("fs");
 const express = require("express");
 const app = express();
