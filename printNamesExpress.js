@@ -1,4 +1,4 @@
-//program to print with express
+//program to print names with express
 const fs = require("fs");
 const express = require("express");
 const app = express();
