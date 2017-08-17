@@ -3,7 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 app.listen(3615);
-const myfunc = (req,res)=>{
+const executeApp = (req,res)=>{
   const printFunc=(err,files)=>{
     let allNames = " ";
     files.forEach((name)=>{
@@ -14,4 +14,4 @@ const myfunc = (req,res)=>{
   };
   fs.readdir("/home", printFunc);
 };
-app.get("/name", myfunc);
+app.get("/name", executeApp);
