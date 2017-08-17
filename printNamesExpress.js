@@ -1,5 +1,5 @@
-//program to print all names besides your own onto the browser using express
-const f = require("fs");
+//program to print all names besides your own in the browser using express
+const fs = require("fs");
 const express = require("express");
 const app = express();
 app.listen(3615);
@@ -12,6 +12,6 @@ const myfunc = (re1,re2)=>{
   })
     re2.send(allNames);
   };
-  f.readdir("/home", printFunc);
+  fs.readdir("/home", printFunc);
 };
 app.get("/name", myfunc);
