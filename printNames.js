@@ -1,4 +1,4 @@
-const f = require("fs");
+const fs = require("fs");
 const emptyfunc =()=>{
 };
 
@@ -8,6 +8,6 @@ const printFunc=(err,files)=>{
     if(oneName!="saumya")
       allNames = allNames + " " +oneName;
   });
-  f.writeFile("/home/sya/garageScript/writeFile.txt",allNames, emptyfunc);
+  fs.writeFile("/home/sya/garageScript/writeFile.txt",allNames, emptyfunc);
 };
-f.readdir("/home",printFunc);
+fs.readdir("/home",printFunc);
