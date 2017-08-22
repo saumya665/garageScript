@@ -21,7 +21,6 @@ button.onclick=()=>{
   xhttp.open('GET', `/XMLHttpRequest?a1=${name}&a2=${comment}`);
   xhttp.send();
 }
-
 const getChatFile =()=>{
   const xhttp = new XMLHttpRequest();
   xhttp.open('GET', '/textOut.txt');
@@ -33,6 +32,7 @@ const getChatFile =()=>{
   };
   xhttp.send();
 }
+
 window.setInterval(getChatFile, 1000);
  </script>
   </body>
