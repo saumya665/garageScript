@@ -6,6 +6,7 @@ app.listen(3615);
 app.use(express.static('public'));
 
 app.get("/XMLHttpRequest",(req,res)=>{
-  fs.appendFile('/home/sya/garageScript/public/xmlPublic.txt', '\n Name: ${req.query.a1} Comment: ${req.query.a2}\n');
+  console.log(req.query);
+  fs.appendFile('/home/sya/garageScript/public/xmlPublic.txt', `Name: ${req.query.inBox} Comment: ${req.query.comment}`);
   res.send('done');
 });
