@@ -4,16 +4,16 @@
     <title></title>
   </head>
   <body>
-    Name: <input type = 'text' id = 'a1'/>
-    Comment: <input type = 'text' id = 'a2'/>
-    <input type = 'submit' id = 'b1'>
+    Name: <input type = 'text' id = 'nameBox'/>
+    Comment: <input type = 'text' id = 'commentBox'/>
+    <input type = 'submit' id = 'submitBox'>
     <script>
-const button = document.getElementById('b1');
+const button = document.getElementById('submitBox');
 button.onclick =()=>{
-  const name = document.getElementById('a1').value;
-  const comment = document.getElementById('a2').value;
+  const name = document.getElementById('nameBox').value;
+  const comment = document.getElementById('commentBox').value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open('GET',`/XMLHttpRequest?a1=${name}&a2=${comment}`);
+  xhttp.open('GET',`/XMLHttpRequest?nameBox=${name}&commentBox=${comment}`);
   xhttp.send();
 }
     </script>
