@@ -5,20 +5,19 @@
     <title></title>
   </head>
   <body>
-    Name:   <input type = 'text' id = 'a1'/>
-    Comment: <input type = 'text' id = 'a2'/>
-    <input type = 'submit' id = 'b1'/>
+    Name:   <input type = 'text' id = 'inputBox'/>
+    Comment: <input type = 'text' id = 'comBox'/>
+    <input type = 'submit' id = 'subBox'/>
     <div>
       <pre id = 'm1'/>
  </div> 
  <script>
-const button = document.getElementById('b1');
+const button = document.getElementById('subBox');
 button.onclick=()=>{
-  console.log("it runs");
-  const name = document.getElementById('a1').value;
-  const comment = document.getElementById('a2').value;
+  const name = document.getElementById('inputBox').value;
+  const comment = document.getElementById('comBox').value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open('GET', `/XMLHttpRequest?a1=${name}&a2=${comment}`);
+  xhttp.open('GET', `/XMLHttpRequest?nameVal=${name}&comVal=${comment}`);
   xhttp.send();
 }
 const getChatFile =()=>{
@@ -28,12 +27,12 @@ const getChatFile =()=>{
     if(xhttp.responseText){
       const content = document.getElementById('m1');
       content.innerHTML = xhttp.responseText;
-    }
+    };
   };
   xhttp.send();
-}
-
+};
 window.setInterval(getChatFile, 1000);
- </script>
+
+   </script>
   </body>
 </html>
