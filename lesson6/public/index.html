@@ -17,7 +17,7 @@ button.onclick=()=>{
   const name = document.getElementById('inputBox').value;
   const comment = document.getElementById('comBox').value;
   const xhttp = new XMLHttpRequest();
-  xhttp.open('GET', `/XMLHttpRequest?nameVal=${name}&comVal=${comment}`);
+  xhttp.open('GET', `/XMLReq?nameVal=${name}&comVal=${comment}`);
   xhttp.send();
 }
 const getChatFile =()=>{
