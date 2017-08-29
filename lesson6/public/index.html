@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    Name:   <input type = 'text' id = 'inputBox'/>
+    Comment: <input type = 'text' id = 'comBox'/>
+    <input type = 'submit' id = 'subBox'/>
+    <div>
+      <pre id = 'messages'/>
+ </div> 
+ <script>
+const button = document.getElementById('subBox');
+button.onclick=()=>{
+  const name = document.getElementById('inputBox').value;
+  const comment = document.getElementById('comBox').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', `/XMLReq?nameVal=${name}&comVal=${comment}`);
+  xhttp.send();
+}
+const getChatFile =()=>{
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', '/textOut.txt');
+  xhttp.onreadystatechange=()=>{
+    if(xhttp.responseText){
+      const content = document.getElementById('messages');
+      content.innerHTML = xhttp.responseText;
+    };
+  };
+  xhttp.send();
+};
+window.setInterval(getChatFile, 1000);
+
+   </script>
+  </body>
+</html>
