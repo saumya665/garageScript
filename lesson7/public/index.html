@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    Name: <input type = 'text' id = 'nameBox'/>
+    Comment: <input type = 'text' id = 'comBox'/>
+    <input type = 'submit' id = 'SubBox'>
+    <div>
+      <pre id = 'messages'/>
+  </div>
+  <script>
+const button = document.getElementById('SubBox');
+button.onclick = ()=>{
+  const name = document.getElementById('nameBox').value;
+  const comment = document.getElementById('comBox').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST', '/submit');
+  xhttp.setRequestHeader('content-type', 'application/json');
+  xhttp.send(JSON.stringify({
+    name, comment
+  }));
+}
+const getInboxFile =()=>{
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', '/inText.txt');
+  xhttp.onreadystatechange=()=>{
+    if(xhttp.responseText){
+      const content = document.getElementById('messages');
+      content.innerHTML = xhttp.responseText;
+    }
+  }
+  xhttp.send();
+}
+window.setInterval(getInboxFile, 1000);
+  </script>
+  </body>
+</html>
