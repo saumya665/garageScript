@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    Name: <input type = 'text' id = 'nameBox'/>
+    Comment: <input type = 'text' id = 'commentBox'/>
+    <input type = 'submit' id = 'submitBox'/>
+    <br/>
+    Selfie: <input id ='button2' type = 'submit'/>
+    <br/>
+    <div>
+      < pre id = 'messages'></pre>
+       <video id = 'vid'></video>
+       <canvas width =400 height = 400 id = 'canvas'/></canvas>
+    </div>
+    <script>
+const button = document.getElementById('submitBox');
+button.onclick=()=>{
+  const name = document.getElementById('nameBox').value;
+  const comment = document.getElementById('commentBox').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST', '/submit');
+  xhttp.setRequestHeader('content-type', 'application/json');
+  xhttp.send(JSON.stringify({
+    name,
+    comment}));
+}
+
+const getInboxFile = ()=>{
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', '/textOut.txt');
+  xhttp.onreadystatechange =()=>{
+    if(xhttp.responseText){
+      const content = document.getElementById('messages');
+      content.innerHTML = xhttp.responseText;
+    }
+  }
+  xhttp.send();
+}
+/* camera*/
+const video = document.getElementById('vid');
+navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: false
+}).then((mediaStream) => {
+  video.srcObject = mediaStream;
+  video.play();
+}).catch((err)=>{
+  console.log(err);
+});
+
+/* take a picture*/
+const button2 = document.getElementById('button2');
+button2.onclick= ()=>{
+  const name = document.getElementById('nameBox');
+  const comment = document.getElementById('commentBox');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  context.drawImage(video,0,0);
+  const dataURl = canvas.toDataURL('/image.png');
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST', '/pics');
+  xhttp.setRequestHeader('content-type', 'application/JSON');
+  xhttp.send(JSON.stringifyfy({
+    canvas: dataURl, name, comment}))
+}
+window.setInterval(getInboxFile,1000);
+    </script>
+  </body>
+</html>
