@@ -20,8 +20,7 @@ button.onclick = ()=>{
   xhttp.open('POST', '/submit');
   xhttp.setRequestHeader('content-type', 'application/json');
   xhttp.send(JSON.stringify({
-    name,
-    comment
+    name, comment
   }));
 }
 const getInboxFile =()=>{
