@@ -9,7 +9,7 @@
     Comment: <input type = 'text' id = 'comBox'/>
     <input type = 'submit' id = 'subBox'/>
     <div>
-      <pre id = 'm1'/>
+      <pre id = 'messages'/>
  </div> 
  <script>
 const button = document.getElementById('subBox');
@@ -25,7 +25,7 @@ const getChatFile =()=>{
   xhttp.open('GET', '/textOut.txt');
   xhttp.onreadystatechange=()=>{
     if(xhttp.responseText){
-      const content = document.getElementById('m1');
+      const content = document.getElementById('messages');
       content.innerHTML = xhttp.responseText;
     };
   };
