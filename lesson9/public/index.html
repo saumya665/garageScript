@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    Name: <input type = 'TEXT' id = 'nameId'/>
+    Comment: <input type = 'TEXT' id = 'comId'/>
+    submit: <input type = 'SUBMIT' id = 'subBox'/>
+    <br/>
+    2ndButton: <input type = 'SUBMIT' id = 'button2'/>
+    <br/>
+    <pre id = 'messages'/> </pre>
+    <video id = 'vid1'></video>
+    <canvas width = 300 height = 300 id = 'canvas1'></canvas>
+    </div>
+    <script>
+/*submit name and comment text; send to a file*/
+const button = document.getElementById('subBox');
+button.onclick = ()=>{
+  name = document.getElementById('nameId').value;
+  comment = document.getElementById('comId').value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST','/nameComment');
+  xhttp.setRequestHeader('content-type', 'application/json');   
+  xhttp.send(JSON.stringify({ name, comment}));
+}
+
+/* chatFile for the name and comment*/
+const getChatFile =()=>{
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('GET', '/textOut.txt');
+  xhttp.onreadystatechange=()=>{
+    if(xhttp.responseText){
+      const content = document.getElementById('messages');
+      content.innerHTML = xhttp.responseText;
+    }
+  }
+  xhttp.send();
+}
+
+/*access the camera*/
+const video = document.getElementById('vid1');
+navigator.mediaDevices.getUserMedia({
+  video:true,
+  audio:false
+}).then((MediaStream)=>{
+  video.srcObject = MediaStream;
+  video.play();
+}).catch((err)=>{
+  console.log(err);
+});
+
+/*take a picture*/
+const button2 = document.getElementById('button2');
+button2.onclick=()=>{
+  const name = document.getElementById('nameId').value;
+  const comment = document.getElementById('comId').value;
+  const canvas = document.getElementById('canvas1');
+  const context = canvas.getContext('2d');
+  context.drawImage(video,0,0);
+  const xhttp = new XMLHttpRequest();
+  xhttp.open('POST','/pics');
+  xhttp.setRequestHeader('content-type','application/JSON');
+  const dataURL = canvas.toDataURL('image/png');
+  xhttp.send(JSON.stringify({canvas: dataURL, name, comment}));
+}
+window.setInterval(getChatFile, 1000);
+    </script>
+  </body>
+</html>
