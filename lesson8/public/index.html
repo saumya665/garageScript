@@ -5,47 +5,46 @@
     <title></title>
   </head>
   <body>
-    Name: <input type = 'text' id = 'nameBox'/>
-    Comment: <input type = 'text' id = 'commentBox'/>
-    <input type = 'submit' id = 'submitBox'/>
-    <br/>
-    Selfie: <input id ='button2' type = 'submit'/>
-    <br/>
+    Name: <input type = 'TEXT' id = 'nameBox'>
+    Comment: <input type = 'TEXT' id = 'comBox'/>
+    submit: <input type = 'submit' id = 'subBox'/>
+    <br>
+    PicButton: <input type = 'submit' id = 'picButton'/>
+    </br>
     <div>
-      < pre id = 'messages'></pre>
-       <video id = 'vid'></video>
-       <canvas width =400 height = 400 id = 'canvas'/></canvas>
+      <pre id = 'messages'></pre>
+      <video id = 'vid'></video>
+      <canvas width = 300 height = 300 id = 'canv'></canvas>
     </div>
     <script>
-const button = document.getElementById('submitBox');
+const button = document.getElementById('subBox');
 button.onclick=()=>{
   const name = document.getElementById('nameBox').value;
-  const comment = document.getElementById('commentBox').value;
+  const comment = document.getElementById('comBox').value;
   const xhttp = new XMLHttpRequest();
   xhttp.open('POST', '/submit');
   xhttp.setRequestHeader('content-type', 'application/json');
-  xhttp.send(JSON.stringify({
-    name,
-    comment}));
+  xhttp.send(JSON.stringify({name, comment}))
 }
-
-const getInboxFile = ()=>{
+/*get chat file*/
+const getChatFile=()=>{
   const xhttp = new XMLHttpRequest();
   xhttp.open('GET', '/textOut.txt');
-  xhttp.onreadystatechange =()=>{
+  xhttp.onreadystatechange=()=>{
     if(xhttp.responseText){
       const content = document.getElementById('messages');
       content.innerHTML = xhttp.responseText;
     }
   }
-  xhttp.send();
 }
-/* camera*/
+window.setInterval(getChatFile,1000);
+
+/*camera*/
 const video = document.getElementById('vid');
-navigator.mediaDevices.getUserMedia({
-  video: true,
+navigator.getMediaDevices.getUserMedia({
+  video:true,
   audio: false
-}).then((mediaStream) => {
+}).then((mediaStream)=>{
   video.srcObject = mediaStream;
   video.play();
 }).catch((err)=>{
@@ -53,21 +52,18 @@ navigator.mediaDevices.getUserMedia({
 });
 
 /* take a picture*/
-const button2 = document.getElementById('button2');
-button2.onclick= ()=>{
-  const name = document.getElementById('nameBox');
-  const comment = document.getElementById('commentBox');
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext('2d');
+const button2 = document.getElementById('picButton');
+button2.onclick=()=>{
+  const canvas = document.getElementById('canv');
+  const context = canvas.getContxt('2d');
   context.drawImage(video,0,0);
-  const dataURl = canvas.toDataURL('/image.png');
+  const dataURL = canvas.toDataURL('/image.png');
   const xhttp = new XMLHttpRequest();
   xhttp.open('POST', '/pics');
-  xhttp.setRequestHeader('content-type', 'application/JSON');
-  xhttp.send(JSON.stringifyfy({
-    canvas: dataURl, name, comment}))
+  xhttp.setRequestHeader('content-type','applicaton/JSON');
+  xhttp.send(JSON.stringify({canvas:toDataURL}))
 }
-window.setInterval(getInboxFile,1000);
+window.setInterval(getChatFile,1000);
     </script>
   </body>
 </html>
