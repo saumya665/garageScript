@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>
+      meme generator
+    </title>
   </head>
   <body>
     Name: <input type = 'TEXT' id = 'nameId'/>
@@ -17,8 +19,8 @@
     </div>
     <script>
 /*submit name and comment text; send to a file*/
-const button = document.getElementById('subBox');
-button.onclick = ()=>{
+const nameComButton = document.getElementById('subBox');
+nameComButton.onclick = ()=>{
   name = document.getElementById('nameId').value;
   comment = document.getElementById('comId').value;
   const xhttp = new XMLHttpRequest();
