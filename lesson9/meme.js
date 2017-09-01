@@ -20,5 +20,6 @@ app.post('/pics', (req,res)=>{
   let memePath = `/home/sya/garageScript/lesson9/public/meme/${req.body.name}.png`;
   fs.writeFile(picPath,picData,'base64', ()=>{
      gm(picPath).fontSize(40).drawText(50,50,req.body.comment).write(memePath, (err) => { console.log('Meme error: ', err); });
+  res.send('Meme has been generated');
   });
 })
