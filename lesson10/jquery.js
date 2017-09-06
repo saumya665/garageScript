@@ -14,11 +14,10 @@ app.post('/nameCom', (req,res)=>{
 })
 
 
-app.post('/pics', (req,res)=>{
+app.post('/savePicsAsMemes', (req,res)=>{
   let picData = req.body.canvas.replace('data:image/png;base64',' ');
   let picPath = `/home/sya/garageScript/lesson10/public/pics/${req.body.name}.png`;
-  let memePath = `/home/sya/garageScript/lesson10/public/memes/${req.body.name}.png`;
   fs.writeFile(picPath, picData, 'base64', ()=>{
-    gm(picPath).fontSize(40).drawText(50,50,req.body.comment).write(memePath,(err)=>{})
+    gm(picPath).fontSize(40).drawText(50,50,req.body.comment).write(picPath,(err)=>{})
   })
 })

@@ -4,7 +4,10 @@ $('#submit').click(()=>{
   $.ajax({
     type: 'POST',
     url: '/nameCom',
-    data:JSON.stringify ({name, comment}),
+    data:JSON.stringify ({
+      name,
+      comment
+    }),
     success:(data)=>{
       console.log('success:', data);
     },
@@ -14,7 +17,7 @@ $('#submit').click(()=>{
 
 /*chat function*/
 const chat =()=>{
-  $.get('/ncom.txt', (data)=>{
+  $.get('/chatHistory.txt', (data)=>{
     $('#messages').html(data);
   })
 }
@@ -40,8 +43,12 @@ $('#picture').click(()=>{
   const dataURL = canvas.toDataURL('image/png');
   $.ajax({
     type: 'POST',
-    url: '/pics',
-    data: JSON.stringify({ name, comment, canvas: dataURL}),
+    url: '/savePicsAsMemes',
+    data: JSON.stringify({
+      name,
+      comment,
+      canvas: dataURL
+    }),
     successs: (data)=>{
       console.log('Success:',data);
     },
