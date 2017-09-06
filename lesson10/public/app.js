@@ -1,53 +1,51 @@
-$('#submit').click( ()=>{
+$('#submit').click(()=>{
   const name = $('#name').val();
   const comment = $('#comment').val();
-
-  $:ajax({
+  $.ajax({
     type: 'POST',
-    url: '/send',
-    contentType: 'application/json',
-    data: JSON.stringify({name: name, comment: comment }),
-    success: (data)=>{
-      console.log('SucessText: ', data);
-    }
-  });
-});
+    url: '/nameCom',
+    data:JSON.stringify ({name, comment}),
+    success:(data)=>{
+      console.log('success:', data);
+    },
+    contentType: 'application/json'
+   })
+})
 
-//Display text on browser
-const getTextFile = ()=>{
-  $.get('/text.txt',(data)=>{
-    const display = $('#browserViewText');
-    display.html(data);
+/*chat function*/
+const chat =()=>{
+  $.get('/ncom.txt', (data)=>{
+    $('#messages').html(data);
   })
 }
-window.setInterval(getTextFile,1000);
+window.setInterval(chat,1000);
 
+/* turn on camera*/
 const video = $('#video')[0];
-navigator.mediaDevices.getUserMedia({video:true, audio:false}).then((stream)=>{
-  video.srcObject = stream;
-  video.play();
-});
-
-//Take pictures
+navigator.mediaDevices.getUserMedia({ video:true, audio: false})
+  .then((mediaStream)=>{
+    video.srcObject = mediaStream;
+    video.play();
+  }).catch((err)=>{
+    console.log("error: ",err);
+  })
+ 
+/*take a picture*/
 $('#picture').click(()=>{
   const name = $('#name').val();
-  const comment = $('name').val();
+  const comment = $('#comment').val();
   const canvas = $('#canvas')[0];
   const context = canvas.getContext('2d');
   context.drawImage(video,0,0);
   const dataURL = canvas.toDataURL('image/png');
-
   $.ajax({
     type: 'POST',
-    url: '/image',
-    contentType: 'application/JSON',
-    data: JSON.stringify({
-      Canvas: dataURL,
-      name: name,
-      comment: comment
-    }),
-    sucess: ()=>{
-      console.log('Sucess Image Taken');
-    }
-   });
-})
+    url: '/pics',
+    data: JSON.stringify({ name, comment, canvas: dataURL}),
+    successs: (data)=>{
+      console.log('Success:',data);
+    },
+    contentType: 'application/json'
+  })
+ })
+
