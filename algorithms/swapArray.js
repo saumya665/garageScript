@@ -1,3 +1,4 @@
+//swapping array indices
 const myFunc = (A,i,j)=>{
   let temp =0;
   temp = A[j];
