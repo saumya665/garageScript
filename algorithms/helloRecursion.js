@@ -5,8 +5,7 @@ const sayHello=(numPrint, i=0)=>{
   }
   else{
     console.log("hello");
-    i = i+1;
-    sayHello(numPrint, i);
+    sayHello(numPrint, i+1);
   }
 }
-sayHello(5);
+sayHello(3);

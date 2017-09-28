@@ -4,9 +4,8 @@ const RecurSum=(array,i=0,total=0)=>{
   }
   else{
     total = total + array[i];
-    i = i+1;
-   return RecurSum(array, i,total);
+   return RecurSum(array, i+1,total);
   }
 }
-RecurSum([1,3,5]);
+RecurSum([1,3,5,5]);
 
