@@ -1,13 +1,11 @@
-const funct = ()=>{
-  console.log("hi");
-}
-const callMe=(num, i=0)=>{
-  if(i==num){
+const callMe=(num,funct, i=1)=>{
+  if(i==num+1){
     return;
   }
   else{
-    funct();
+    funct(i);
   }
-  return callMe(num,i+1, funct);
+  return callMe(num,funct,i+1);
 }
-callMe(3);
+callMe(3,(i)=>{
+  console.log(i)});
