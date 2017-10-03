@@ -1,20 +1,22 @@
-const funct=(num, i=0)=>{
-  if(i==num){
+findMin=(num1,num2)=>{
+  if(num1<num2){
+    return num1;
+  }
+  else{
+    return num2;
+  }
+}
+
+const numTimes=(num1, num2,funct,i=1)=>{
+  if(i==findMin(num1,num2)+1){
     return;
   }
   else{
-    console.log('hi');
+    funct(i);
   }
-  return funct(num, i+1);
+
+  return numTimes(num1, num2,funct, i+1);
 }
 
-const numTimes=(num1, num2)=>{
-  if(num1<num2){
-    funct(num1);
-  }
-  else{
-    funct(num2);
-  }
-}
-
-numTimes(5,3);
+numTimes(5,2,(i)=>{
+  console.log(i)});
